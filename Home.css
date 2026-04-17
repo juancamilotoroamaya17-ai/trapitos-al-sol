@@ -1,0 +1,226 @@
+.home-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  max-width: 600px;
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+}
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 2rem;
+  align-items: center;
+  position: relative;
+  z-index: 50;
+}
+
+/* Cinematic Title Reveal */
+.title-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+
+
+.asteroid-wrapper {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 40%;
+  margin-top: -20px;
+  z-index: 10;
+}
+
+.asteroid-rock {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at 30% 30%, #555 0%, #222 40%, #050505 80%, #000 100%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  box-shadow: inset -5px -5px 12px rgba(0,0,0,0.95), inset 3px 3px 6px rgba(255,255,255,0.15), 0 0 10px rgba(0,0,0,0.4);
+}
+
+.asteroid-left {
+  animation: asteroidEntryLeft 1s ease-in forwards;
+}
+.asteroid-left .asteroid-rock {
+  animation: asteroidSpinLeft 1s linear forwards;
+}
+
+.asteroid-right {
+  animation: asteroidEntryRight 1s ease-in forwards;
+}
+.asteroid-right .asteroid-rock {
+  border-radius: 50% 40% 30% 70% / 60% 30% 70% 40%;
+  background: radial-gradient(circle at 70% 30%, #555 0%, #222 40%, #050505 80%, #000 100%);
+  animation: asteroidSpinRight 1s linear forwards;
+}
+
+/* Cola de Fricción / Calor */
+.heat-trail {
+  position: absolute;
+  top: 50%;
+  width: 160px;
+  height: 18px;
+  margin-top: -9px;
+  filter: blur(5px);
+  border-radius: 50%;
+  z-index: -1;
+  animation: heatTrail 1s ease-in forwards;
+}
+.asteroid-left .heat-trail {
+  right: 25px; 
+  background: linear-gradient(to left, rgba(255,200,0,0.9), rgba(255,50,0,0.6), transparent);
+  transform-origin: right center;
+}
+.asteroid-right .heat-trail {
+  left: 25px;
+  background: linear-gradient(to right, rgba(255,200,0,0.9), rgba(255,50,0,0.6), transparent);
+  transform-origin: left center;
+}
+
+.title-text-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 20;
+}
+.title-text-wrap.pop-in {
+  animation: titleReveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.subtitle-wrap {
+  text-align: center;
+}
+
+/* Secuencia Botones */
+.btn-pop-1 { animation: btnPopStagger 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, idlePairsPulse 3s ease-in-out 0.6s infinite; opacity: 0; }
+.btn-pop-2 { animation: btnSlideUpStagger 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards; opacity: 0; }
+.btn-pop-3 { animation: btnFadeStagger 0.6s ease-out 0.4s forwards; opacity: 0; }
+
+@keyframes btnPopStagger { 
+  from { opacity: 0; transform: scale(0.95); } 
+  to { opacity: 1; transform: scale(1); } 
+}
+@keyframes btnSlideUpStagger { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+@keyframes btnFadeStagger { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+}
+
+@keyframes idlePairsPulse { 
+  0%, 100% { transform: scale(1); } 
+  50% { transform: scale(1.03); } 
+}
+
+.main-title {
+  margin-bottom: 0 !important;
+  line-height: 1;
+  background: linear-gradient(135deg, #ff3366, #ff8c00, #ff1493);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleEnergyPulse 4s ease-in-out infinite alternate, titleGradientMove 5s linear infinite;
+  text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.emoji-angel {
+  font-size: 3.4rem;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatAngel 6s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+.emoji-devil {
+  font-size: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  filter: drop-shadow(0 -4px 10px rgba(210, 107, 255, 0.8)) drop-shadow(0 4px 12px rgba(138, 43, 226, 0.5));
+  animation: floatDevil 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.emoji-svg {
+  width: 1em;
+  height: 1em;
+  will-change: transform, filter, opacity;
+  position: relative;
+  z-index: 2;
+}
+
+/* Mode Buttons Specific Styling */
+.is-static .btn-pop-1,
+.is-static button[class*="mode-pairs"],
+button[class*="mode-pairs"]:not(.btn-pop-1) {
+  animation: idlePairsPulse 3s ease-in-out infinite;
+}
+
+.btn-mode-pairs {
+  background: linear-gradient(135deg, #1e90ff, #8a2be2);
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.5);
+  font-size: 1.15rem;
+  border: none;
+}
+.btn-mode-pairs:hover {
+  animation: none !important; /* Mata el pulse si aplica */
+  background: linear-gradient(135deg, #2a9df4, #9b3be2);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.8);
+  transform: scale(1.04) !important;
+}
+
+.btn-mode-group {
+  background: linear-gradient(135deg, #ff8c00, #dc143c);
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.4);
+  border: none;
+}
+.btn-mode-group:hover {
+  background: linear-gradient(135deg, #ff9d20, #e81d48);
+  box-shadow: 0 6px 18px rgba(220, 20, 60, 0.6);
+  transform: scale(1.04) !important;
+}
+
+.btn-mode-individual {
+  background: rgba(30, 30, 30, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.75);
+}
+.btn-mode-individual:hover {
+  background: rgba(50, 50, 50, 0.5);
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.15);
+  transform: scale(1.04) !important;
+}

@@ -1,0 +1,17 @@
+:root {
+  --color-bg-dark: #05070d;
+  --color-text-light: #f0f0fa;
+  --color-text-muted: #a0a0c0;
+
+  /* Gradients & Colors */
+  --grad-primary: linear-gradient(135deg, #8A2BE2, #FF1493);
+  --bg-secondary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.15);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(20px);
+  
+  --font-family: 'Outfit', sans-serif;
+}
