@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  font-family: var(--font-family);
+  color: var(--color-text-light);
+  overflow: hidden;
+
+  /* Capa Base: Oscura con volumen ligero */
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent),
+              radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent),
+              #05070d;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+#root::before, #root::after {
+  content: "";
+  position: fixed;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Capa 1: estrellas pequeñas y rápidas */
+#root::before {
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.15) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(255,255,255,0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.2) 1px, transparent 1px),
+    radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 200px 200px;
+  animation: moveStarsFast 40s linear infinite, floatDrift 8s ease-in-out infinite;
+}
+
+/* Capa 2: estrellas más grandes y lentas */
+#root::after {
+  background-image: 
+    radial-gradient(circle at 20% 90%, rgba(255,255,255,0.1) 2px, transparent 2px),
+    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.15) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 2px, transparent 2px);
+  background-size: 300px 300px;
+  animation: moveStarsSlow 60s linear infinite, floatDrift 12s ease-in-out infinite reverse;
+}
